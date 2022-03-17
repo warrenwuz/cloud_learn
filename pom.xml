@@ -10,6 +10,8 @@
         <module>feign_one_service</module>
         <module>feign_two_service</module>
         <module>cloud_gateway</module>
+        <module>cloud_auth</module>
+        <module>cloud_common</module>
     </modules>
     <name>cloud_learn</name>
     <description>learn spring cloud</description>

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cloud-gateway
+    name: cloud-auth
   cloud:
     nacos:
       discovery: # nacos  注册地址
@@ -11,17 +11,7 @@ spring:
         file-extension: yaml
       password: nacos
       username: nacos
-    gateway:
-      routes:
-        - id: feign-two-service
-          uri: lb://feign-two-service
-          predicates:
-            - Path= /two/**
-        - id: cloud-auth
-          uri: lb://cloud-auth
-          predicates:
-            - Path= /sys/**
   profiles:
     active: dev
 server:
-  port: 8019
+  port: 8088
