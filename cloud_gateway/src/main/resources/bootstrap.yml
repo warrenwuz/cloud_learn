@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    nacos:
+      discovery: # nacos  注册地址
+        server-addr: http://127.0.0.1:8848
+      config:  # nacos config配置地址
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        context-path: /nacos
+        file-extension: yaml
+      password: nacos
+      username: nacos
+    gateway:
+      routes:
+        - id: feign-two-service
+          uri: lb://feign-two-service
+          predicates:
+            - Path= /two/**
+  profiles:
+    active: dev
+server:
+  port: 8019
