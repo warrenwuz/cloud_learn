@@ -9,7 +9,7 @@ public interface IResultCode {
      *
      * @return Integer
      */
-    Integer getCode();
+    int getCode();
 
     /**
      * 返回消息

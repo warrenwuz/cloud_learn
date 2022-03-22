@@ -1,15 +1,10 @@
 package com.warren.service;
 
-import cn.dev33.satoken.secure.SaSecureUtil;
-import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.Mode;
 import cn.hutool.crypto.Padding;
-import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.symmetric.AES;
-import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
-import cn.hutool.crypto.symmetric.SymmetricCrypto;
-import com.warren.constant.AuthExptionEnum;
+import com.warren.constant.AuthExceptionEnum;
 import com.warren.util.Asserts;
 import com.warren.vo.SysBaseUserInfoVo;
 import com.warren.vo.SysUserLoginInfoVo;
@@ -17,9 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.validation.constraints.NotBlank;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
@@ -72,7 +65,7 @@ public class LoginService {
     private void loginInfoDecrypt(SysUserLoginInfoVo sysUserLoginInfoVo) {
         Object obj = redisService.get(LOGIN_SECRET_KEY + sysUserLoginInfoVo.getKey());
         //验证密钥是否超时
-        Asserts.notNull(obj, AuthExptionEnum.SUBMIT_TIMEOUT);
+        Asserts.notNull(obj, AuthExceptionEnum.SUBMIT_TIMEOUT);
         String secretKey = (String) obj;
         String iv = secretKey.substring(0, 16);
         AES aes = new AES(Mode.CBC, Padding.PKCS5Padding, secretKey.getBytes(StandardCharsets.UTF_8), iv.getBytes(StandardCharsets.UTF_8));

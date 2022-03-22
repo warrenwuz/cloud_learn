@@ -13,5 +13,3 @@ spring:
       username: nacos
   profiles:
     active: dev
-server:
-  port: 8088

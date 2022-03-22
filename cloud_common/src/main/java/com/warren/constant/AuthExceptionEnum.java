@@ -6,7 +6,7 @@ import lombok.Getter;
  * @author warren
  */
 @Getter
-public enum AuthExptionEnum implements IResultCode {
+public enum AuthExceptionEnum implements IResultCode {
     // 登录和用户相关的
     SESSION_TIMEOUT(10001, "登录会话已经失效"),
     USER_ACCOUNT_OUT_OF_SERVICE(10034, "该账号已被停用，登录失败！请联系系统管理员。"),
@@ -49,7 +49,7 @@ public enum AuthExptionEnum implements IResultCode {
     private int code;
     private String msg;
 
-    AuthExptionEnum(int code, String msg) {
+    AuthExceptionEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
