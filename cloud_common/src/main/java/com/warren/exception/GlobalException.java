@@ -5,6 +5,8 @@ import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.exception.NotPermissionException;
 import cn.dev33.satoken.exception.NotRoleException;
 import com.warren.entity.ApiResult;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author warren
  */
 @RestControllerAdvice
+@Slf4j
 public class GlobalException {
     // 全局异常拦截（拦截项目中的所有异常）
     @ResponseBody
@@ -34,7 +37,12 @@ public class GlobalException {
         } else if (e instanceof DisableLoginException) {    // 如果是被封禁异常
             DisableLoginException ee = (DisableLoginException) e;
             return ApiResult.failMsg("账号被封禁：" + ee.getDisableTime() + "秒后解封");
-        } else {    // 普通异常, 输出：500 + 异常信息
+        } else if (e instanceof MethodArgumentNotValidException) {    // 如果是被封禁异常
+           // MethodArgumentNotValidException ee = (MethodArgumentNotValidException) e;
+            return ApiResult.failMsg("请求参数异常");
+        }
+        else {    // 普通异常, 输出：500 + 异常信息
+            log.error("请求接口未知异常",e);
             return ApiResult.failMsg(e.getMessage());
         }
     }

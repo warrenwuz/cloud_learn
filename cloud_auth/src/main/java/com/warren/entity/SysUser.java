@@ -1,11 +1,14 @@
 package com.warren.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author warren
  */
-@Data
+@Getter
+@Setter
 public class SysUser implements BaseEntity {
     /**
      * 主键ID
