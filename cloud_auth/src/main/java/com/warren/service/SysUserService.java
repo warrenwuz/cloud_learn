@@ -1,13 +1,13 @@
 package com.warren.service;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.warren.entity.SysUser;
 import com.warren.mapper.SysUserMapper;
+import com.warren.util.PasswordUtil;
+import com.warren.vo.SysBaseUserInfoNewVo;
 import com.warren.vo.SysBaseUserInfoVo;
-import com.warren.vo.SysUserLoginInfoVo;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,20 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
+
+
+
+    public static final String Salt = "63293188";//密钥
+    /**
+     * 定义迭代次数为1000次iteration
+     */
+    private static final int ITERATION_COUNT = 1000;
+    public void addSysUser(SysBaseUserInfoNewVo sysBaseUserInfoNewVo){
+        //String newPasword = PasswordUtil.encrypt(userIdentity, defaultPassword, PasswordUtil.getStaticSalt());
+
+    }
+
+
     /**
      * 根据登陆用户名获取用户信息
      *

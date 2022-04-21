@@ -6,6 +6,7 @@ import com.warren.entity.ApiResult;
 import com.warren.service.CaptchaService;
 import com.warren.service.LoginService;
 import com.warren.service.SysUserService;
+import com.warren.vo.SysBaseUserInfoVo;
 import com.warren.vo.SysUserLoginInfoVo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
@@ -33,9 +34,8 @@ public class LoginController {
     }
 
     @RequestMapping("doLogin")
-    public ApiResult<String> doLogin(@RequestBody @Validated SysUserLoginInfoVo sysUserLoginInfoVo) {
-        sysUserLoginService.login(sysUserLoginInfoVo);
-        return ApiResult.successMsg("登陆失败");
+    public ApiResult<SysBaseUserInfoVo> doLogin(@RequestBody @Validated SysUserLoginInfoVo sysUserLoginInfoVo) {
+       return sysUserLoginService.login(sysUserLoginInfoVo);
     }
 
 }
